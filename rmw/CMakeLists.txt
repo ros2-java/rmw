@@ -68,6 +68,11 @@ if(BUILD_TESTING)
   list(APPEND AMENT_LINT_AUTO_EXCLUDE ament_cmake_cppcheck)
   ament_cppcheck(INCLUDE_DIRS ${rcutils_INCLUDE_DIRS})
 
+  if(NOT RCUTILS_DISABLE_FAULT_INJECTION)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DRCUTILS_ENABLE_FAULT_INJECTION")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DRCUTILS_ENABLE_FAULT_INJECTION")
+  endif()
+  
   add_subdirectory(test)
 endif()
 
